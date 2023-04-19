@@ -1,10 +1,50 @@
-import { View, Text, Box, Stack, HStack, Heading, Center, AspectRatio, Image } from 'native-base'
-import React from 'react'
+import { Pressable, Text, Box, Stack, HStack, Heading, Center, AspectRatio, Image, Badge } from 'native-base'
+import React, {useState} from 'react'
+import { Entypo } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
-export default function index() {
+enum EnumIcons {
+  Livro = 'book',
+  Podcast = 'podcast',
+  Video = 'play',
+  Imagem = 'image',
+  Artigo = 'article'
+}
+
+interface CardProps {
+  icon: keyof typeof EnumIcons 
+}
+
+export default function index({ icon }: CardProps) {
+  let Icon = <FontAwesome name="book" size={40} color="white" />
+
+  switch(EnumIcons[icon]) {
+    case 'book':
+      Icon = <FontAwesome name="book" style={{margin: 5}} size={35} color="white" />
+      break
+
+    case 'podcast':
+      Icon = <FontAwesome name="podcast" style={{margin: 5}} size={35} color="white" />
+      break
+
+    case 'play':
+      Icon = <Entypo name="controller-play" size={40} color="white" />
+      break
+
+    case 'image':
+      Icon = <Entypo name="image-inverted" size={40} color="white" />
+      break
+
+    case 'article':
+      Icon = <MaterialIcons name="article" size={40} color="white" />
+      break
+  }
+
   return (
-    <Box alignItems="center">
-      <Box maxW="80" rounded="lg" overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
+    <Box alignItems="center" py={10}>
+      
+      <Pressable onPress={() => console.log(icon)} maxW="80" rounded="lg" overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
       borderColor: "coolGray.600",
       backgroundColor: "gray.700"
     }} _web={{
@@ -19,7 +59,15 @@ export default function index() {
             uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg"
           }} alt="image" />
           </AspectRatio>
-          
+          <Center bg="violet.500" _dark={{
+          bg: "violet.400"
+        }} _text={{
+          color: "warmGray.50",
+          fontWeight: "700",
+          fontSize: "xs"
+        }} position="absolute" roundedTopRight={'3xl'} bottom="0" px="3" py="1.5">
+            {Icon}
+          </Center>
         </Box>
         <Stack p="4" space={3}>
           <Stack space={2}>
@@ -48,7 +96,7 @@ export default function index() {
             </HStack>
           </HStack>
         </Stack>
-      </Box>
+      </Pressable>
     </Box>
   )
 }

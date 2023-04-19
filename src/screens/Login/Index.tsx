@@ -11,10 +11,10 @@ export default function Index() {
 	 function Logar() {
 		signInWithEmailAndPassword(auth, Email, Senha)
 		  .then(() => {
-			alert('logado')
+			navigation.navigate('Feed')
 		  })
 		  .catch((err) => {
-			console.log(err);
+			console.error(err);
 		  });
 	  } 
 

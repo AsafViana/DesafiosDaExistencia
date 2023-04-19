@@ -1,8 +1,10 @@
 import { Box, Center, Heading, VStack, FormControl, Input, Button } from 'native-base'
 import React, { useState, useEffect } from 'react'
 import { auth, createUserWithEmailAndPassword } from '../../service/firebase'
+import { useNavigation } from '@react-navigation/native'
 
 export default function index() {
+	const navigation = useNavigation()
 	const [Email, setEmail] = useState()
 	const [Senha, setSenha] = useState()
 	const [ConfirmeSenha, setConfirmeSenha] = useState()
@@ -19,7 +21,7 @@ export default function index() {
     function Cadastrar() {
         createUserWithEmailAndPassword(auth, Email, Senha)
         .then(() => {
-            alert('cadastrado')
+            navigation.navigate('Feed')
         })
         .catch(err => {
             console.error(err.message)
