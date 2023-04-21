@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { NativeBaseProvider } from 'native-base'
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context'
 import { Routes } from './src/routes/index'
+import 'react-native-gesture-handler';
 
 import { StatusBar } from 'react-native'
 

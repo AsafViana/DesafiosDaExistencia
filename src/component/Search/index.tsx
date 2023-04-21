@@ -2,7 +2,7 @@ import { VStack, Divider, Box, Heading, Input, Icon } from 'native-base'
 import React, { useState } from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
-export default function index() {
+export default function index(props) {
 	const [backgroundColor, setBackgroundColor] = useState('#fff');
 
   const handleInputFocus = () => {
@@ -13,7 +13,7 @@ export default function index() {
     setBackgroundColor('#fff');
   };
 	return (
-		<VStack
+		<VStack {...props}
 			space={5}
 			w="100%"
 			maxW="300px"
